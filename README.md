@@ -38,5 +38,4 @@ savoryspot-restaurant-ui/
 ## Live Demo
 
 https://kajalmishra8.github.io/savoryspot-restaurant-ui/
-```
----
+
