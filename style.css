@@ -332,6 +332,8 @@ input, select, textarea {
 }
 input:focus, select:focus, textarea:focus { outline: 1px solid var(--gold); }
 .wide { grid-column: 1 / -1; }
+form.stack { grid-template-columns: 1fr; }
+#contactForm h3 { margin: 0 0 0.2rem; }
 .note {
   grid-column: 1 / -1;
   margin: 0;
@@ -370,61 +372,15 @@ input:focus, select:focus, textarea:focus { outline: 1px solid var(--gold); }
   color: var(--ivory);
 }
 
-.host-panel[hidden],
 .toast[hidden],
 .note[hidden] { display: none !important; }
-
-.host-panel header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-.host-panel header button {
-  background: none;
-  border: 1px solid var(--line);
-  cursor: pointer;
-  padding: 0.2rem 0.45rem;
-}
-
-.host {
-  position: fixed;
-  right: 1.2rem;
-  bottom: 1.2rem;
-  z-index: 30;
-  width: min(20rem, calc(100vw - 2rem));
-}
-.host-panel {
-  margin-bottom: 0.5rem;
-  background: var(--ivory);
-  border: 1px solid rgba(184, 146, 74, 0.4);
-}
-.host-panel header, #hostForm { padding: 0.7rem 0.85rem; }
-.host-log {
-  height: 13rem;
-  overflow: auto;
-  padding: 0.8rem;
-  display: grid;
-  gap: 0.45rem;
-  align-content: start;
-  background: #efe4d0;
-}
-.bubble { max-width: 85%; padding: 0.5rem 0.7rem; font-size: 0.9rem; }
-.bubble.user { margin-left: auto; background: var(--maroon); color: #fff; }
-.bubble.host { background: #fff; border: 1px solid var(--line); }
-#hostForm { display: flex; gap: 0.4rem; }
-#hostForm input { flex: 1; }
-#hostBtn {
-  margin-left: auto;
-  display: block;
-  border: 1px solid var(--gold);
-  background: var(--night);
-  color: var(--gold-soft);
-  padding: 0.7rem 1rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  cursor: pointer;
+button:disabled { opacity: 0.55; cursor: wait; }
+.honey {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  width: 0;
+  overflow: hidden;
 }
 
 .toast {
@@ -456,8 +412,9 @@ input:focus, select:focus, textarea:focus { outline: 1px solid var(--gold); }
     grid-template-columns: 1fr;
   }
   .featured { grid-row: auto; }
-  .featured img, .menu-wrap > img, .story img { height: 16rem; }
+  .featured img, .menu-wrap > img, .story img, .visit img { height: 16rem; }
   .menu-wrap > img { position: static; }
+  .visit > div { padding: 2.5rem 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

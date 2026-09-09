@@ -157,7 +157,14 @@
         </ul>
         <p class="fine">Eighteen seats. We hold a booking for fifteen minutes.</p>
       </div>
-      <form id="reserveForm">
+      <form id="reserveForm" method="POST">
+        <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" id="reserveSubject" value="SavorySpot reservation">
+        <input type="hidden" name="_next" id="reserveNext" value="">
+        <input type="hidden" name="type" value="Reservation">
+        <input type="hidden" name="booking_id" id="reserveId" value="">
         <label>Date <input type="date" name="date" required></label>
         <label>Time
           <select name="time" required>
@@ -193,10 +200,15 @@
         <p class="tag">Visit</p>
         <h2>Bandra East,<br>Mumbai</h2>
         <p>14 Government Colony Road, 400051</p>
-        <p><a href="tel:+912235614400">+91 22 3561 4400</a><br>
-          <a href="mailto:savoryspot@gmail.com">savoryspot@gmail.com</a></p>
+        <p><a href="tel:+912235614400">+91 22 3561 4400</a></p>
         <a class="textlink" href="https://www.google.com/maps/search/?api=1&query=Bandra+East+Mumbai" target="_blank" rel="noopener noreferrer">Directions</a>
-        <form id="contactForm">
+        <form id="contactForm" class="stack" method="POST">
+          <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_subject" value="SavorySpot message">
+          <input type="hidden" name="_next" id="contactNext" value="">
+          <input type="hidden" name="type" value="Message">
           <h3>Write to us</h3>
           <label>Name <input type="text" name="name" required></label>
           <label>Email <input type="email" name="email" required></label>
@@ -214,21 +226,6 @@
     <p>Pure vegetarian dining house · Bandra East</p>
     <p>© 2026</p>
   </footer>
-
-  <div class="host">
-    <div class="host-panel" id="hostPanel" hidden>
-      <header>
-        <strong>Host desk</strong>
-        <button type="button" id="closeHost">Close</button>
-      </header>
-      <div class="host-log" id="hostLog"></div>
-      <form id="hostForm">
-        <input id="hostInput" type="text" placeholder="Hours, thali, a table…" required autocomplete="off">
-        <button class="pill" type="submit">Send</button>
-      </form>
-    </div>
-    <button type="button" id="hostBtn">Ask the host</button>
-  </div>
 
   <p class="toast" id="toast" hidden></p>
   <script src="script.js" defer></script>
