@@ -1,41 +1,40 @@
-# SavorySpot – Restaurant UI
+# SavorySpot
 
-Responsive restaurant website UI built with HTML and CSS, focusing on layout design and mobile-first responsiveness.
+Pure vegetarian dining house in Bandra East, Mumbai. A responsive restaurant website with menu, table reservations, and a contact form.
 
----
+**Live site:** [https://kajalmishra-dev.github.io/savoryspot-restaurant-ui/](https://kajalmishra-dev.github.io/savoryspot-restaurant-ui/)
 
 ## Features
 
-- Landing page  
-- Menu section  
-- Chef section  
-- About section  
-- Contact form UI  
+- Hero, house story, signature plates, and a full veg menu
+- Reservation form with a booking ID on submit
+- Contact form (messages are delivered by email, address is not shown on the page)
+- Mobile navigation and a layout that stacks on smaller screens
+- 100% vegetarian branding - no meat, fish, or egg
 
----
+## Tech stack
 
-## Tech Stack
+- HTML5
+- CSS3
+- Vanilla JavaScript
 
-- HTML5  
-- CSS3  
+## Run locally
 
----
+Open the folder and start a simple server:
 
-## Project Structure
-
+```bash
+python -m http.server 8080
 ```
 
+Then visit [http://localhost:8080](http://localhost:8080).
+
+## Project structure
+
+```text
 savoryspot-restaurant-ui/
 ├── index.html
 ├── style.css
+├── script.js
 ├── images/
-├── assets/
-
+└── README.md
 ```
-
----
-
-## Live Demo
-
-https://kajalmishra8.github.io/savoryspot-restaurant-ui/
-
