@@ -173,12 +173,12 @@
 
   function reply(text) {
     var q = String(text).toLowerCase();
-    if (/(hi|hello|hey|namaste)/.test(q)) return "Namaste. SavorySpot is 100% pure veg. Hours, menu, or a table?";
+    if (/(hi|hello|hey|namaste)/.test(q)) return "Namaste. SavorySpot is a pure vegetarian dining house. Hours, the thali, or a table?";
     if (/(hour|open|close)/.test(q)) return "Daily 8:00 AM to 11:00 PM. Last seating 10:30 PM.";
     if (/(where|address|bandra)/.test(q)) return "14 Government Colony Road, Bandra East, Mumbai 400051.";
-    if (/(meat|chicken|fish|egg|non.?veg|mutton)/.test(q)) return "We are 100% pure vegetarian. No meat, fish or egg. Jain thali without onion and garlic on request.";
-    if (/(jain|onion|garlic)/.test(q)) return "Yes — Jain cooking with no onion or garlic. Tell us when you reserve or order.";
-    if (/(menu|thali|biryani|food|veg|paneer|poha|idli)/.test(q)) return "Pure veg menu: kanda poha, ragi idli, paneer tikka masala, Punjabi thali, special brass thali, veg dum biryani.";
+    if (/(meat|chicken|fish|egg|non.?veg|mutton)/.test(q)) return "We are 100% vegetarian. No meat, fish or egg. Jain cooking on request.";
+    if (/(jain|onion|garlic)/.test(q)) return "Yes — Jain plates with no onion or garlic. Mention it when you reserve.";
+    if (/(menu|thali|biryani|food|veg|paneer|poha|idli)/.test(q)) return "House plates: veg dum biryani, Rajwada brass thali, paneer tikka masala, Punjabi thali, ragi idli.";
     if (/(book|reserv|table)/.test(q)) return "Use Reserve a table. You’ll get a booking ID on this page.";
     if (/(order|pickup)/.test(q)) return "Add dishes from the menu, then open Order.";
     return "Noted. Reserve on this page, or call +91 22 3561 4400.";
@@ -199,7 +199,7 @@
   if (hostBtn && hostPanel) {
     hostBtn.addEventListener("click", function () {
       hostPanel.hidden = false;
-      if (hostLog && !hostLog.childElementCount) bubble("host", "Namaste. Pure veg kitchen — ask about the thali, biryani, or a table.");
+      if (hostLog && !hostLog.childElementCount) bubble("host", "Namaste. Pure vegetarian kitchen — ask about the brass thali or a table tonight.");
     });
   }
   var closeHost = $("closeHost");

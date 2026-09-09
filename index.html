@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SavorySpot — 100% Pure Veg, Bandra East</title>
-  <meta name="description" content="Pure vegetarian restaurant in Bandra East, Mumbai. Poha, idli, paneer, thalis and veg biryani. No meat, fish or egg.">
-  <meta name="theme-color" content="#0b0a09">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%230b0a09' width='32' height='32'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='14' fill='%23c4a46a' font-family='Georgia'%3ES%3C/text%3E%3C/svg%3E">
+  <title>SavorySpot — Pure Vegetarian Dining, Bandra East</title>
+  <meta name="description" content="SavorySpot is a traditional vegetarian dining house in Bandra East, Mumbai. Brass thalis, tandoor paneer, veg dum biryani. No meat, fish or egg.">
+  <meta name="theme-color" content="#2a1410">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%232a1410' width='32' height='32'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='14' fill='%23c4a15a' font-family='Georgia'%3ES%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,146 +19,136 @@
     <a class="brand" href="#top">SavorySpot <span class="veg-mark" title="100% vegetarian">Veg</span></a>
     <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav">
+      <a href="#story">The house</a>
       <a href="#menu">Menu</a>
-      <a href="#story">Story</a>
-      <a href="#plates">Plates</a>
-      <a href="#reserve">Reserve</a>
+      <a href="#reserve">Reservations</a>
+      <a href="#visit">Visit</a>
     </nav>
     <div class="top-actions">
       <button class="ghost" id="cartBtn" type="button">Order <em id="cartCount">0</em></button>
-      <a class="pill" href="#reserve">Book a table</a>
+      <a class="pill" href="#reserve">Reserve</a>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <p class="tag">100% Pure Veg · Bandra East · Since 2019</p>
-      <h1><em>Where every flavor</em><br>tells a story.</h1>
-      <p class="lede">A neighbourhood Indian kitchen. Only vegetarian food — no meat, no fish, no egg. Thalis, tandoor paneer, poha at breakfast, veg biryani after dark.</p>
+      <p class="tag">Established 2019 · Bandra East</p>
+      <h1>SavorySpot</h1>
+      <p class="rule" aria-hidden="true"></p>
+      <p class="lede">A vegetarian dining house of brass thalis, slow spices, and a room built for lingering.</p>
       <p class="hero-cta">
-        <a class="pill" href="#reserve">Reserve this evening</a>
-        <a class="textlink" href="#menu">See the menu</a>
+        <a class="pill" href="#reserve">Reserve a table</a>
+        <a class="textlink" href="#menu">Tonight’s menu</a>
       </p>
-      <span class="scroll-cue">Scroll</span>
     </section>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>100% Pure Veg</span><span>No egg</span><span>Bandra East</span><span>Punjabi thali</span><span>Veg biryani</span>
-        <span>100% Pure Veg</span><span>No egg</span><span>Bandra East</span><span>Punjabi thali</span><span>Veg biryani</span>
-      </div>
-    </div>
+    <p class="strip">100% vegetarian · No egg · Jain cooking on request · Last seating 10:30 PM</p>
 
     <section class="story" id="story">
-      <p class="num">01</p>
-      <div class="story-copy">
-        <p class="tag">The room</p>
-        <h2>A Bandra veg kitchen<br>with a proper dining room.</h2>
-        <p>We cook the food people actually order in Mumbai — poha and idli in the morning, paneer and thalis at lunch, a brass thali and veg dum biryani at night. Vegetables from the local market. Jain plates without onion and garlic if you ask. Tables held fifteen minutes past the booking.</p>
-      </div>
-      <figure class="story-shot">
-        <img src="images/hero.jpg" alt="A long table set for dinner" width="626" height="417">
-        <figcaption>Dinner service, the long table</figcaption>
+      <figure>
+        <img src="images/table.png" alt="A traditionally set table at SavorySpot" width="1024" height="768">
       </figure>
+      <div>
+        <p class="tag">The house</p>
+        <h2>Old spices,<br>a quieter table.</h2>
+        <p>SavorySpot is a pure vegetarian kitchen in Bandra East. We cook from the grocer’s morning crate — millet idli, kanda poha, tandoor paneer, dum biryani in clay, and a brass thali for those who want the full house.</p>
+        <p>No meat. No fish. No egg. Ever. Tell us if you eat Jain, and the pass will hold the onion and garlic.</p>
+      </div>
     </section>
 
     <section class="plates" id="plates">
-      <header class="section-title">
-        <p class="tag">02 — From the pass</p>
-        <h2>Signatures</h2>
+      <header class="head">
+        <p class="tag">From the kitchen</p>
+        <h2>House plates</h2>
       </header>
       <div class="plate-grid">
-        <article class="plate plate-lg" data-id="biryani" data-name="Veg dum biryani" data-price="350">
-          <img src="images/dinner2.jpeg" alt="Veg dum biryani in a clay handi" width="454" height="357">
+        <article class="plate featured" data-id="biryani" data-name="Veg dum biryani" data-price="350">
+          <img src="images/biryani.png" alt="Veg dum biryani in a clay handi" width="1024" height="768">
           <div>
-            <span>01 · Pure veg</span>
+            <p class="tag">Dinner</p>
             <h3>Veg dum biryani</h3>
-            <p>Basmati, mixed vegetables, fried onion, mint, raita. Dum-cooked in a handi.</p>
-            <p class="meta"><b>₹350</b> <button type="button">Add</button></p>
+            <p>Saffron rice, garden vegetables, birista, mint, raita.</p>
+            <p class="meta"><b>₹350</b> <button type="button">Add to order</button></p>
           </div>
         </article>
-        <article class="plate" data-id="special" data-name="Special brass thali" data-price="599">
-          <img src="images/dinner1.jpeg" alt="Special vegetarian brass thali" width="466" height="340">
+        <article class="plate" data-id="special" data-name="Rajwada brass thali" data-price="599">
+          <img src="images/brass-thali.png" alt="Rajwada vegetarian brass thali" width="1024" height="768">
           <div>
-            <span>02 · Pure veg</span>
-            <h3>Special brass thali</h3>
-            <p>Dal, paneer, sabzi, rice, roti, salad, two sweets.</p>
-            <p class="meta"><b>₹599</b> <button type="button">Add</button></p>
+            <p class="tag">Signature</p>
+            <h3>Rajwada brass thali</h3>
+            <p>Dal, paneer, sabzi, rice, roti, pickle, two sweets.</p>
+            <p class="meta"><b>₹599</b> <button type="button">Add to order</button></p>
           </div>
         </article>
         <article class="plate" data-id="paneer" data-name="Paneer tikka masala" data-price="360">
-          <img src="images/lunch1.jpeg" alt="Paneer tikka masala with butter naan" width="433" height="322">
+          <img src="images/paneer.png" alt="Paneer tikka masala with butter naan" width="1024" height="768">
           <div>
-            <span>03 · Pure veg</span>
+            <p class="tag">Tandoor</p>
             <h3>Paneer tikka masala</h3>
-            <p>Tandoor paneer, tomato gravy, butter naan.</p>
-            <p class="meta"><b>₹360</b> <button type="button">Add</button></p>
+            <p>Charred paneer, tomato gravy, butter naan.</p>
+            <p class="meta"><b>₹360</b> <button type="button">Add to order</button></p>
           </div>
         </article>
       </div>
     </section>
 
     <section class="menu" id="menu">
-      <header class="section-title">
-        <p class="tag">03 — Menu</p>
-        <h2>Pure veg menu</h2>
-        <p class="menu-note">Every plate carries the green mark. No meat, fish or egg. Jain (no onion, garlic) on request.</p>
+      <header class="head">
+        <p class="tag">Menu</p>
+        <h2>Pure vegetarian</h2>
+        <p>Every dish is marked veg. Prices include the plate as served.</p>
       </header>
       <div class="menu-wrap">
-        <figure>
-          <img src="images/lunch2.jpeg" alt="Punjabi vegetarian thali on a banana leaf" width="375" height="371">
-        </figure>
-        <div class="menu-cols">
-          <div>
-            <h3>Breakfast</h3>
-            <article data-id="poha" data-name="Kanda poha" data-price="99"><h4>Kanda poha</h4><i></i><b>₹99</b><button type="button">Add</button></article>
-            <article data-id="idli" data-name="Ragi idli" data-price="150"><h4>Ragi idli</h4><i></i><b>₹150</b><button type="button">Add</button></article>
-            <article data-id="paratha" data-name="Aloo paratha" data-price="189"><h4>Aloo paratha</h4><i></i><b>₹189</b><button type="button">Add</button></article>
-            <h3>Lunch</h3>
-            <article data-id="paneer" data-name="Paneer tikka masala" data-price="360"><h4>Paneer tikka masala</h4><i></i><b>₹360</b><button type="button">Add</button></article>
-            <article data-id="thali" data-name="Punjabi thali" data-price="445"><h4>Punjabi thali</h4><i></i><b>₹445</b><button type="button">Add</button></article>
-            <article data-id="market" data-name="Veg thali" data-price="395"><h4>Veg thali</h4><i></i><b>₹395</b><button type="button">Add</button></article>
-          </div>
-          <div>
-            <h3>Dinner</h3>
-            <article data-id="special" data-name="Special brass thali" data-price="599"><h4>Special brass thali</h4><i></i><b>₹599</b><button type="button">Add</button></article>
-            <article data-id="biryani" data-name="Veg dum biryani" data-price="350"><h4>Veg dum biryani</h4><i></i><b>₹350</b><button type="button">Add</button></article>
-            <article data-id="feast" data-name="Family veg thali" data-price="520"><h4>Family veg thali</h4><i></i><b>₹520</b><button type="button">Add</button></article>
-            <h3>Drinks &amp; sweets</h3>
-            <article data-id="chai" data-name="Masala chai" data-price="70"><h4>Masala chai</h4><i></i><b>₹70</b><button type="button">Add</button></article>
-            <article data-id="nimbu" data-name="Fresh lime soda" data-price="90"><h4>Fresh lime soda</h4><i></i><b>₹90</b><button type="button">Add</button></article>
-            <article data-id="lassi" data-name="Mango lassi" data-price="120"><h4>Mango lassi</h4><i></i><b>₹120</b><button type="button">Add</button></article>
-            <article data-id="jamun" data-name="Gulab jamun" data-price="140"><h4>Gulab jamun</h4><i></i><b>₹140</b><button type="button">Add</button></article>
-          </div>
+        <img src="images/punjabi-thali.png" alt="Punjabi vegetarian thali" width="1024" height="768">
+        <div class="menu-list">
+          <h3>Breakfast <span>8:00 – 11:30</span></h3>
+          <article data-id="poha" data-name="Kanda poha" data-price="99"><h4>Kanda poha</h4><i></i><b>₹99</b><button type="button">Add</button></article>
+          <article data-id="idli" data-name="Ragi idli" data-price="150"><h4>Ragi idli &amp; chutney</h4><i></i><b>₹150</b><button type="button">Add</button></article>
+          <article data-id="paratha" data-name="Aloo paratha" data-price="189"><h4>Aloo paratha</h4><i></i><b>₹189</b><button type="button">Add</button></article>
+
+          <h3>Lunch <span>12:00 – 3:30</span></h3>
+          <article data-id="paneer" data-name="Paneer tikka masala" data-price="360"><h4>Paneer tikka masala</h4><i></i><b>₹360</b><button type="button">Add</button></article>
+          <article data-id="thali" data-name="Punjabi thali" data-price="445"><h4>Punjabi thali</h4><i></i><b>₹445</b><button type="button">Add</button></article>
+          <article data-id="dal" data-name="Dal tadka &amp; rice" data-price="245"><h4>Dal tadka &amp; rice</h4><i></i><b>₹245</b><button type="button">Add</button></article>
+
+          <h3>Dinner <span>7:00 – 11:00</span></h3>
+          <article data-id="special" data-name="Rajwada brass thali" data-price="599"><h4>Rajwada brass thali</h4><i></i><b>₹599</b><button type="button">Add</button></article>
+          <article data-id="biryani" data-name="Veg dum biryani" data-price="350"><h4>Veg dum biryani</h4><i></i><b>₹350</b><button type="button">Add</button></article>
+          <article data-id="feast" data-name="Family veg thali" data-price="520"><h4>Family veg thali</h4><i></i><b>₹520</b><button type="button">Add</button></article>
+
+          <h3>The glass</h3>
+          <article data-id="chai" data-name="Masala chai" data-price="70"><h4>Masala chai</h4><i></i><b>₹70</b><button type="button">Add</button></article>
+          <article data-id="lassi" data-name="Mango lassi" data-price="120"><h4>Mango lassi</h4><i></i><b>₹120</b><button type="button">Add</button></article>
+          <article data-id="nimbu" data-name="Fresh lime soda" data-price="90"><h4>Fresh lime soda</h4><i></i><b>₹90</b><button type="button">Add</button></article>
+          <article data-id="jamun" data-name="Gulab jamun" data-price="140"><h4>Gulab jamun</h4><i></i><b>₹140</b><button type="button">Add</button></article>
         </div>
       </div>
     </section>
 
-    <section class="film-wrap">
-      <p class="tag">04 — The look of the place</p>
+    <section class="gallery">
+      <p class="tag">The room</p>
       <div class="film">
-        <img src="images/interior1.png" alt="Dining room" width="1200" height="800" loading="lazy">
-        <img src="images/breakfast1.jpeg" alt="Poha" width="461" height="353" loading="lazy">
-        <img src="images/dinner3.jpeg" alt="Family vegetarian thali" width="454" height="369" loading="lazy">
-        <img src="images/breakfast2.jpeg" alt="Idli" width="368" height="364" loading="lazy">
-        <img src="images/lunch3.jpeg" alt="Market thali" width="357" height="326" loading="lazy">
-        <img src="images/hero.jpg" alt="Set table" width="626" height="417" loading="lazy">
+        <img src="images/room.png" alt="Dining room" width="1376" height="768" loading="lazy">
+        <img src="images/poha.png" alt="Kanda poha" width="1024" height="768" loading="lazy">
+        <img src="images/idli.png" alt="Ragi idli" width="1024" height="768" loading="lazy">
+        <img src="images/punjabi-thali.png" alt="Punjabi thali" width="1024" height="768" loading="lazy">
+        <img src="images/table.png" alt="Set table" width="1024" height="768" loading="lazy">
       </div>
     </section>
 
     <section class="chef">
-      <img src="images/1.jpg" alt="Chef Ananya Rao" width="342" height="615">
+      <img src="images/chef.png" alt="Chef Ananya Rao" width="768" height="1024">
       <div>
-        <p class="tag">05 — Kitchen</p>
+        <p class="tag">The kitchen</p>
         <h2>Ananya Rao</h2>
-        <p>Executive chef. A pure-veg kitchen — tandoor paneer, dals, thalis, and a veg dum biryani. Jain cooking on request.</p>
-        <blockquote>“Come hungry. Everything on the table is vegetarian.”</blockquote>
+        <p>Executive chef. She runs a vegetarian pass — tandoor, dum, and the brass thali — with recipes from her grandmother’s Pune kitchen.</p>
+        <blockquote>“If it isn’t vegetarian, it doesn’t leave the pass.”</blockquote>
       </div>
     </section>
 
     <section class="reserve" id="reserve">
       <div>
-        <p class="tag">06 — Reservations</p>
+        <p class="tag">Reservations</p>
         <h2>Hold a table.</h2>
         <ul>
           <li><span>Breakfast</span> 8:00 – 11:30</li>
@@ -166,7 +156,7 @@
           <li><span>Dinner</span> 7:00 – 11:00</li>
           <li><span>Last seating</span> 10:30 PM</li>
         </ul>
-        <p class="fine">14 Government Colony Road, Bandra East · +91 22 3561 4400</p>
+        <p class="fine">Eighteen seats. We hold a booking for fifteen minutes.</p>
       </div>
       <form id="reserveForm">
         <label>Date <input type="date" name="date" required></label>
@@ -202,12 +192,13 @@
     <section class="visit" id="visit">
       <div>
         <p class="tag">Visit</p>
-        <h2>Bandra East,<br>Mumbai.</h2>
+        <h2>Bandra East,<br>Mumbai</h2>
         <p>14 Government Colony Road, 400051</p>
-        <p><a href="mailto:savoryspot@gmail.com">savoryspot@gmail.com</a></p>
-        <a class="textlink" href="https://www.google.com/maps/search/?api=1&query=Bandra+East+Mumbai" target="_blank" rel="noopener noreferrer">Get directions</a>
+        <p><a href="tel:+912235614400">+91 22 3561 4400</a><br>
+          <a href="mailto:savoryspot@gmail.com">savoryspot@gmail.com</a></p>
+        <a class="textlink" href="https://www.google.com/maps/search/?api=1&query=Bandra+East+Mumbai" target="_blank" rel="noopener noreferrer">Directions</a>
         <form id="contactForm">
-          <h3>Host desk</h3>
+          <h3>Write to us</h3>
           <label>Name <input type="text" name="name" required></label>
           <label>Email <input type="email" name="email" required></label>
           <label>Message <textarea name="message" rows="4" required></textarea></label>
@@ -215,13 +206,13 @@
           <p class="note" id="contactMsg" hidden></p>
         </form>
       </div>
-      <img src="images/interior1.png" alt="SavorySpot dining room" width="1200" height="800" loading="lazy">
+      <img src="images/room.png" alt="SavorySpot dining room" width="1376" height="768" loading="lazy">
     </section>
   </main>
 
   <footer class="foot">
     <p class="wordmark">SavorySpot</p>
-    <p>100% Pure Veg · No egg · Bandra East, Mumbai</p>
+    <p>Pure vegetarian dining house · Bandra East</p>
     <p>© 2026</p>
   </footer>
 
@@ -255,7 +246,7 @@
       </header>
       <div class="host-log" id="hostLog"></div>
       <form id="hostForm">
-        <input id="hostInput" type="text" placeholder="Hours, menu, a table…" required autocomplete="off">
+        <input id="hostInput" type="text" placeholder="Hours, thali, a table…" required autocomplete="off">
         <button class="pill" type="submit">Send</button>
       </form>
     </div>
