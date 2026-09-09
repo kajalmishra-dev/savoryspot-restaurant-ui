@@ -26,7 +26,6 @@ body {
 img {
   display: block;
   max-width: 100%;
-  filter: saturate(0.92) sepia(0.12);
 }
 a { color: inherit; }
 button, input, select, textarea { font: inherit; }
@@ -118,20 +117,15 @@ button, input, select, textarea { font: inherit; }
   cursor: pointer;
 }
 .pill:hover { background: var(--maroon-dark); }
-.ghost, .textlink, .plate button, .menu-list button {
+.textlink {
   background: none;
   border: 0;
-  color: var(--gold);
+  color: var(--ivory);
   cursor: pointer;
-}
-.ghost { color: inherit; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.75rem; }
-.textlink {
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 0.1rem;
-  color: var(--ivory);
 }
-#cartCount { font-style: normal; margin-left: 0.3rem; }
 
 .tag {
   margin: 0 0 0.75rem;
@@ -161,7 +155,7 @@ h3 { font-size: 1.45rem; }
   color: var(--ivory);
   background:
     linear-gradient(180deg, rgba(26, 16, 12, 0.25), rgba(26, 16, 12, 0.78)),
-    url("images/room.png") center/cover no-repeat;
+    url("images/web-interior.jpg") center/cover no-repeat;
 }
 .rule {
   width: 4.5rem;
@@ -217,8 +211,8 @@ h3 { font-size: 1.45rem; }
   border: 1px solid rgba(184, 146, 74, 0.28);
 }
 .featured { grid-row: span 2; }
-.plate img { height: 16rem; border: 0; border-bottom: 1px solid rgba(184, 146, 74, 0.28); }
-.featured img { height: 34rem; }
+.plate img { height: 16rem; border: 0; border-bottom: 1px solid rgba(184, 146, 74, 0.28); object-position: center; }
+.featured img { height: 34rem; object-position: center; }
 .plate div { padding: 1.2rem 1.3rem 1.4rem; }
 .meta {
   display: flex;
@@ -252,7 +246,7 @@ h3 { font-size: 1.45rem; }
 .menu-list h3 span { font-family: var(--sans); letter-spacing: 0.08em; color: var(--muted); font-weight: 400; }
 .menu-list article {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr auto;
   gap: 0.6rem;
   align-items: baseline;
   padding: 0.75rem 0;
@@ -261,7 +255,6 @@ h3 { font-size: 1.45rem; }
 .menu-list h4 { margin: 0; font-size: 1.2rem; }
 .menu-list i { border-bottom: 1px dotted rgba(110, 28, 34, 0.35); transform: translateY(-0.25rem); }
 .menu-list b { color: var(--maroon); font-weight: 500; }
-.menu-list button { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
 
 .gallery { padding-right: 0; background: var(--night); color: var(--ivory); }
 .gallery .tag { padding-left: 2rem; }
@@ -274,7 +267,6 @@ h3 { font-size: 1.45rem; }
 .film img {
   flex: 0 0 min(70vw, 32rem);
   height: 20rem;
-  filter: saturate(0.92) sepia(0.12);
 }
 
 .chef {
@@ -378,42 +370,22 @@ input:focus, select:focus, textarea:focus { outline: 1px solid var(--gold); }
   color: var(--ivory);
 }
 
-.drawer[hidden],
 .host-panel[hidden],
 .toast[hidden],
-.note[hidden],
-#checkoutForm[hidden] { display: none !important; }
+.note[hidden] { display: none !important; }
 
-.drawer {
-  position: fixed;
-  inset: 0;
-  background: rgba(26, 16, 12, 0.5);
-  z-index: 40;
-  display: flex;
-  justify-content: flex-end;
-}
-.drawer-panel {
-  width: min(24rem, 100%);
-  height: 100%;
-  overflow: auto;
-  background: var(--ivory);
-  padding: 1.3rem;
-}
-.drawer-panel header, .host-panel header, .line, .totals {
+.host-panel header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
-.line { padding: 0.75rem 0; border-bottom: 1px solid var(--line); }
-.qty { display: flex; align-items: center; gap: 0.5rem; }
-.qty button, .drawer-panel header button, .host-panel header button {
+.host-panel header button {
   background: none;
   border: 1px solid var(--line);
   cursor: pointer;
   padding: 0.2rem 0.45rem;
 }
-.empty { color: var(--muted); text-align: center; padding: 2rem 0; }
 
 .host {
   position: fixed;
