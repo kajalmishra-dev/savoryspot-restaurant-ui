@@ -3,108 +3,267 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SavorySpot</title>
-
+  <title>SavorySpot — Fine Dining, Bandra East</title>
+  <meta name="description" content="SavorySpot is an upscale Indian restaurant in Bandra East, Mumbai. Browse the menu, order, book a table, and chat with us.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect fill='%23120e0c' width='64' height='64' rx='12'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='36'%3E🍽️%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <a class="skip-link" href="#menu">Skip to menu</a>
 
-<!-- Navbar -->
-<header class="navbar">
-  <h1 class="logo">SavorySpot</h1>
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#chef">Chef</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <header class="navbar" id="top">
+    <a class="logo" href="#top">SavorySpot</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="siteNav">
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#chef">Chefs</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#reserve">Reserve</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="cart-btn" id="cartBtn" aria-label="Open order">
+      Order <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </header>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>SavorySpot</h1>
-    <p>Where every flavor tells a story</p>
-  </div>
-</section>
-
-<!-- Menu -->
-<section id="menu">
-  <h2>Menu</h2>
-
-  <div class="menu-container">
-
-    <div class="menu-card">
-      <h3>Breakfast</h3>
-      <img src="images/breakfast1.jpeg">
-      <p>Poha - ₹99</p>
-      <img src="images/breakfast2.jpeg">
-      <p>Idli - ₹150</p>
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="eyebrow">Bandra East · Mumbai</p>
+      <h1>Where every flavor tells a story</h1>
+      <p class="hero-sub">Seasonal Indian plates, warm lighting, and a table waiting for you.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#menu">View menu</a>
+        <a class="btn btn-ghost" href="#reserve">Book a table</a>
+      </div>
     </div>
+  </section>
 
-    <div class="menu-card">
-      <h3>Lunch</h3>
-      <img src="images/lunch1.jpeg">
-      <p>Paneer Naan - ₹360</p>
-      <img src="images/lunch2.jpeg">
-      <p>Punjabi Thali - ₹445</p>
-    </div>
-
-    <div class="menu-card">
-      <h3>Dinner</h3>
-      <img src="images/dinner1.jpeg">
-      <p>Special Thali - ₹599</p>
-      <img src="images/dinner2.jpeg">
-      <p>Biryani - ₹350</p>
-    </div>
-
+  <div class="info-bar">
+    <div><strong>Open daily</strong><span>8:00 AM – 11:00 PM</span></div>
+    <div><strong>Location</strong><span>Bandra East, Mumbai</span></div>
+    <div><strong>Guest rating</strong><span>4.8 · 1,200+ reviews</span></div>
   </div>
-</section>
 
-<!-- Chef -->
-<section id="chef">
-  <h2>Our Chefs</h2>
-  <div class="chef-container">
-    <div><img src="images/1.jpg"><p>Chef 1</p></div>
-    <div><img src="images/2.jpeg"><p>Chef 2</p></div>
-    <div><img src="images/3.jpeg"><p>Chef 3</p></div>
-    <div><img src="images/4.jpg"><p>Chef 4</p></div>
+  <section id="menu">
+    <p class="eyebrow">From the kitchen</p>
+    <h2>Menu</h2>
+    <p class="section-lead">Tap a dish to add it to your order. We’ll confirm instantly.</p>
+    <div class="filters" id="filters" role="tablist" aria-label="Menu categories">
+      <button class="filter-btn is-active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="breakfast">Breakfast</button>
+      <button class="filter-btn" data-filter="lunch">Lunch</button>
+      <button class="filter-btn" data-filter="dinner">Dinner</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+  <section id="chef">
+    <p class="eyebrow">The team</p>
+    <h2>Our chefs</h2>
+    <div class="chef-grid">
+      <figure>
+        <img src="images/1.jpg" alt="Executive Chef Ananya Rao">
+        <figcaption>
+          <strong>Ananya Rao</strong>
+          <span>Executive Chef</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="images/2.jpeg" alt="Chef Rohan Mehta">
+        <figcaption>
+          <strong>Rohan Mehta</strong>
+          <span>Grill &amp; Tandoor</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="images/3.jpeg" alt="Chef Priya Nair">
+        <figcaption>
+          <strong>Priya Nair</strong>
+          <span>Pastry</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="images/4.jpg" alt="Chef Vikram Singh">
+        <figcaption>
+          <strong>Vikram Singh</strong>
+          <span>Regional Indian</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="about-copy">
+      <p class="eyebrow">Our story</p>
+      <h2>About SavorySpot</h2>
+      <p>SavorySpot is a modern restaurant in Bandra East built around slow cooking, generous spices, and a room that feels like evening even at noon.</p>
+      <p>We source daily from local markets, keep a mostly vegetarian kitchen with coastal and Punjabi plates, and treat every booking as a personal welcome.</p>
+      <ul class="about-points">
+        <li>Farm-fresh produce, milled spices</li>
+        <li>Private tables for 2–12 guests</li>
+        <li>Walk-ins welcome until 10:30 PM</li>
+      </ul>
+    </div>
+    <img class="about-photo" src="images/about.png" alt="SavorySpot dining room with warm pendant lighting">
+  </section>
+
+  <section id="reserve">
+    <p class="eyebrow">Join us</p>
+    <h2>Reserve a table</h2>
+    <p class="section-lead">Request a seating and we’ll send a booking confirmation right away.</p>
+    <form id="reserveForm" class="panel-form">
+      <div class="form-row">
+        <label>Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Phone
+          <input type="tel" name="phone" autocomplete="tel" placeholder="+91" required>
+        </label>
+      </div>
+      <label>Email
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <div class="form-row">
+        <label>Date
+          <input type="date" name="date" required>
+        </label>
+        <label>Time
+          <select name="time" required>
+            <option value="">Choose a slot</option>
+            <option>8:00 AM</option>
+            <option>9:30 AM</option>
+            <option>12:30 PM</option>
+            <option>1:30 PM</option>
+            <option>7:00 PM</option>
+            <option>8:00 PM</option>
+            <option>9:00 PM</option>
+            <option>10:00 PM</option>
+          </select>
+        </label>
+        <label>Guests
+          <input type="number" name="guests" min="1" max="12" value="2" required>
+        </label>
+      </div>
+      <label>Occasion <span class="optional">(optional)</span>
+        <select name="occasion">
+          <option value="">Just dining</option>
+          <option>Birthday</option>
+          <option>Anniversary</option>
+          <option>Business</option>
+          <option>Family gathering</option>
+        </select>
+      </label>
+      <label>Notes <span class="optional">(optional)</span>
+        <textarea name="notes" rows="3" placeholder="Allergies, window seat, high chair…"></textarea>
+      </label>
+      <button class="btn btn-gold" type="submit">Confirm reservation</button>
+      <p class="form-hint">You’ll get a booking ID on this page immediately.</p>
+    </form>
+  </section>
+
+  <section id="contact">
+    <p class="eyebrow">Talk to us</p>
+    <h2>Contact</h2>
+    <p class="section-lead">Ask a question — we reply on this page, then follow up by email.</p>
+    <div class="contact-grid">
+      <form id="contactForm" class="panel-form">
+        <label>Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Message
+          <textarea name="message" rows="5" required placeholder="Ask about the menu, events, or a large booking…"></textarea>
+        </label>
+        <button class="btn btn-gold" type="submit">Send message</button>
+      </form>
+      <aside class="contact-card">
+        <h3>Visit</h3>
+        <p>Bandra East, Mumbai</p>
+        <p>savoryspot@gmail.com</p>
+        <p>+91 22 3561 4400</p>
+        <p>Daily 8:00 AM – 11:00 PM</p>
+        <div id="latestReply" class="latest-reply" hidden></div>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <strong class="logo">SavorySpot</strong>
+      <p>Fine Indian dining in Bandra East.</p>
+    </div>
+    <p>© 2026 SavorySpot. All rights reserved.</p>
+  </footer>
+
+  <aside class="drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer-panel">
+      <header>
+        <h2>Your order</h2>
+        <button class="icon-btn" id="closeCart" aria-label="Close order">×</button>
+      </header>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-summary" id="cartSummary" hidden>
+        <p><span>Subtotal</span><span id="subtotal">₹0</span></p>
+        <p><span>GST (5%)</span><span id="gst">₹0</span></p>
+        <p class="total"><span>Total</span><span id="total">₹0</span></p>
+        <form id="checkoutForm">
+          <label>Name
+            <input type="text" name="name" required>
+          </label>
+          <label>Phone
+            <input type="tel" name="phone" required>
+          </label>
+          <label>How should we serve this?
+            <select name="fulfillment" required>
+              <option value="dine-in">Dine in</option>
+              <option value="pickup">Pickup in 25 min</option>
+            </select>
+          </label>
+          <button class="btn btn-gold" type="submit">Place order</button>
+        </form>
+      </div>
+    </div>
+  </aside>
+
+  <div class="chat" id="chat">
+    <button class="chat-toggle" id="chatToggle" aria-label="Open chat">
+      Chat with us
+    </button>
+    <div class="chat-panel" id="chatPanel" hidden>
+      <header>
+        <div>
+          <strong>SavorySpot host</strong>
+          <span>Usually replies instantly</span>
+        </div>
+        <button class="icon-btn" id="closeChat" aria-label="Close chat">×</button>
+      </header>
+      <div class="chat-log" id="chatLog" role="log" aria-live="polite"></div>
+      <form id="chatForm">
+        <input type="text" id="chatInput" placeholder="Ask about hours, menu, booking…" required autocomplete="off">
+        <button class="btn btn-gold" type="submit">Send</button>
+      </form>
+    </div>
   </div>
-</section>
 
-<!-- About -->
-<section id="about">
-  <h2>About Us</h2>
-  <p>
-    SavorySpot is a modern restaurant offering fresh and delicious meals.
-    We focus on quality ingredients and a memorable dining experience.
-  </p>
-</section>
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+      <h3 id="modalTitle"></h3>
+      <p id="modalBody"></p>
+      <button class="btn btn-gold" id="closeModal" type="button">Done</button>
+    </div>
+  </div>
 
-<!-- Contact -->
-<section id="contact">
-  <h2>Contact</h2>
-
-  <form>
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Message" required></textarea>
-    <button type="submit">Submit</button>
-  </form>
-
-  <p>Bandra East, Mumbai</p>
-  <p>Email: savoryspot@gmail.com</p>
-</section>
-
-<!-- Footer -->
-<footer>
-  <p>© 2026 SavorySpot</p>
-</footer>
-
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+  <script src="script.js"></script>
 </body>
 </html>
