@@ -1,298 +1,244 @@
-const MENU = [
-  { id: "poha", name: "Poha", price: 99, category: "breakfast", image: "images/breakfast1.jpeg", blurb: "Flattened rice, peanuts, lemon" },
-  { id: "idli", name: "Idli", price: 150, category: "breakfast", image: "images/breakfast2.jpeg", blurb: "Steamed cakes, coconut chutney" },
-  { id: "dosa", name: "Masala dosa", price: 189, category: "breakfast", image: "images/breakfast3.jpg", blurb: "Crisp dosa, spiced potato" },
-  { id: "naan", name: "Paneer naan platter", price: 360, category: "lunch", image: "images/lunch1.jpeg", blurb: "Tandoor paneer, butter naan" },
-  { id: "thali", name: "Punjabi thali", price: 445, category: "lunch", image: "images/lunch2.jpeg", blurb: "Dal, sabzi, roti, rice, raita" },
-  { id: "dal", name: "Dal makhani bowl", price: 295, category: "lunch", image: "images/lunch3.jpeg", blurb: "Slow-cooked black lentils" },
-  { id: "special", name: "Special thali", price: 599, category: "dinner", image: "images/dinner1.jpeg", blurb: "Chef's tasting plates" },
-  { id: "biryani", name: "Dum biryani", price: 350, category: "dinner", image: "images/dinner2.jpeg", blurb: "Saffron rice, raita, gravy" },
-  { id: "tandoor", name: "Tandoori platter", price: 520, category: "dinner", image: "images/dinner3.jpeg", blurb: "Grill, chutneys, laccha onion" }
-];
+(function () {
+  "use strict";
 
-const cart = new Map();
-let activeFilter = "all";
+  var cart = {};
+  var toastTimer;
 
-const menuGrid = document.getElementById("menuGrid");
-const cartCount = document.getElementById("cartCount");
-const cartDrawer = document.getElementById("cartDrawer");
-const cartItems = document.getElementById("cartItems");
-const cartSummary = document.getElementById("cartSummary");
-const modal = document.getElementById("modal");
-const chatPanel = document.getElementById("chatPanel");
-const chatLog = document.getElementById("chatLog");
-
-function rupees(n) {
-  return `₹${n.toLocaleString("en-IN")}`;
-}
-
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, (char) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  }[char]));
-}
-
-function toast(message) {
-  const el = document.createElement("div");
-  el.className = "toast";
-  el.textContent = message;
-  document.getElementById("toasts").appendChild(el);
-  setTimeout(() => el.remove(), 2800);
-}
-
-function showModal(title, body) {
-  document.getElementById("modalTitle").textContent = title;
-  document.getElementById("modalBody").textContent = body;
-  modal.classList.add("is-open");
-  modal.setAttribute("aria-hidden", "false");
-}
-
-function hideModal() {
-  modal.classList.remove("is-open");
-  modal.setAttribute("aria-hidden", "true");
-}
-
-function renderMenu() {
-  const dishes = MENU.filter((item) => activeFilter === "all" || item.category === activeFilter);
-  menuGrid.innerHTML = dishes.map((item) => `
-    <article class="dish">
-      <img src="${item.image}" alt="${escapeHtml(item.name)}">
-      <div class="dish-body">
-        <h3>${escapeHtml(item.name)}</h3>
-        <p class="dish-meta">${escapeHtml(item.blurb)}</p>
-        <div class="dish-row">
-          <span class="price">${rupees(item.price)}</span>
-          <button type="button" data-add="${item.id}">Add to order</button>
-        </div>
-      </div>
-    </article>
-  `).join("");
-}
-
-function cartQty() {
-  return [...cart.values()].reduce((sum, item) => sum + item.qty, 0);
-}
-
-function cartTotals() {
-  const subtotal = [...cart.values()].reduce((sum, item) => sum + item.qty * item.price, 0);
-  const gst = Math.round(subtotal * 0.05);
-  return { subtotal, gst, total: subtotal + gst };
-}
-
-function renderCart() {
-  cartCount.textContent = String(cartQty());
-  if (!cart.size) {
-    cartItems.innerHTML = `<p class="empty-cart">Your order is empty. Add a dish from the menu.</p>`;
-    cartSummary.hidden = true;
-    return;
+  function $(id) {
+    return document.getElementById(id);
   }
 
-  cartItems.innerHTML = [...cart.values()].map((item) => `
-    <div class="cart-line">
-      <div>
-        <strong>${escapeHtml(item.name)}</strong>
-        <div class="price">${rupees(item.price * item.qty)}</div>
-      </div>
-      <div class="qty">
-        <button class="qty-btn" type="button" data-change="${item.id}" data-delta="-1">−</button>
-        <span>${item.qty}</span>
-        <button class="qty-btn" type="button" data-change="${item.id}" data-delta="1">+</button>
-      </div>
-    </div>
-  `).join("");
+  function rupees(n) {
+    return "₹" + Number(n).toLocaleString("en-IN");
+  }
 
-  const totals = cartTotals();
-  document.getElementById("subtotal").textContent = rupees(totals.subtotal);
-  document.getElementById("gst").textContent = rupees(totals.gst);
-  document.getElementById("total").textContent = rupees(totals.total);
-  cartSummary.hidden = false;
-}
+  function escapeText(value) {
+    return String(value || "").replace(/[&<>"']/g, function (ch) {
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch];
+    });
+  }
 
-function addToCart(id) {
-  const dish = MENU.find((item) => item.id === id);
-  const existing = cart.get(id);
-  cart.set(id, { ...dish, qty: existing ? existing.qty + 1 : 1 });
+  function uid() {
+    return "SS-" + Math.floor(1000 + Math.random() * 9000);
+  }
+
+  function showToast(text) {
+    var el = $("toast");
+    if (!el) return;
+    el.textContent = text;
+    el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.hidden = true; }, 2600);
+  }
+
+  function cartQty() {
+    return Object.keys(cart).reduce(function (sum, id) {
+      return sum + cart[id].qty;
+    }, 0);
+  }
+
+  function cartTotal() {
+    var sub = Object.keys(cart).reduce(function (sum, id) {
+      return sum + cart[id].qty * cart[id].price;
+    }, 0);
+    return Math.round(sub * 1.05);
+  }
+
+  function renderCart() {
+    var count = $("cartCount");
+    var list = $("cartList");
+    var form = $("checkoutForm");
+    var total = $("cartTotal");
+    if (count) count.textContent = String(cartQty());
+    if (!list) return;
+
+    var ids = Object.keys(cart);
+    if (!ids.length) {
+      list.innerHTML = '<p class="empty">Your order is empty.</p>';
+      if (form) form.hidden = true;
+      return;
+    }
+
+    list.innerHTML = ids.map(function (id) {
+      var item = cart[id];
+      return '<div class="line"><div><strong>' + escapeText(item.name) +
+        "</strong><div>" + rupees(item.price * item.qty) +
+        '</div></div><div class="qty">' +
+        '<button type="button" data-id="' + escapeText(id) + '" data-d="-1">−</button>' +
+        "<span>" + item.qty + "</span>" +
+        '<button type="button" data-id="' + escapeText(id) + '" data-d="1">+</button></div></div>';
+    }).join("");
+    if (total) total.textContent = rupees(cartTotal());
+    if (form) form.hidden = false;
+  }
+
+  function addItem(id, name, price) {
+    if (!id) return;
+    if (!cart[id]) cart[id] = { name: name, price: Number(price) || 0, qty: 0 };
+    cart[id].qty += 1;
+    renderCart();
+    showToast(name + " added");
+  }
+
+  document.addEventListener("click", function (event) {
+    var card = event.target.closest("[data-id]");
+    if (card && event.target.tagName === "BUTTON" && !event.target.dataset.d) {
+      addItem(card.getAttribute("data-id"), card.getAttribute("data-name"), card.getAttribute("data-price"));
+      return;
+    }
+    var stepper = event.target.closest("[data-d]");
+    if (stepper) {
+      var item = cart[stepper.getAttribute("data-id")];
+      if (!item) return;
+      item.qty += Number(stepper.getAttribute("data-d"));
+      if (item.qty <= 0) delete cart[stepper.getAttribute("data-id")];
+      renderCart();
+    }
+  });
+
+  var drawer = $("drawer");
+  var cartBtn = $("cartBtn");
+  var closeDrawer = $("closeDrawer");
+  if (cartBtn && drawer) {
+    cartBtn.addEventListener("click", function () { drawer.hidden = false; });
+  }
+  if (closeDrawer && drawer) {
+    closeDrawer.addEventListener("click", function () { drawer.hidden = true; });
+    drawer.addEventListener("click", function (event) {
+      if (event.target === drawer) drawer.hidden = true;
+    });
+  }
+
+  var checkout = $("checkoutForm");
+  if (checkout) {
+    checkout.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!Object.keys(cart).length) return;
+      var data = new FormData(checkout);
+      var id = uid();
+      var total = cartTotal();
+      var names = Object.keys(cart).map(function (key) {
+        return cart[key].qty + " × " + cart[key].name;
+      }).join(", ");
+      var list = $("cartList");
+      cart = {};
+      renderCart();
+      if (list) {
+        list.innerHTML = '<p class="form-msg"><strong>Order ' + id + " confirmed.</strong> " +
+          escapeText(data.get("name")) + ", " + escapeText(names) + ". Total " + rupees(total) +
+          ". We’ll use " + escapeText(data.get("phone")) + " if the kitchen needs you.</p>";
+      }
+      checkout.reset();
+      showToast("Kitchen confirmed " + id);
+    });
+  }
+
+  var reserveForm = $("reserveForm");
+  if (reserveForm && reserveForm.elements.date) {
+    reserveForm.elements.date.min = new Date().toISOString().split("T")[0];
+    reserveForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!reserveForm.reportValidity()) return;
+      var data = new FormData(reserveForm);
+      var id = uid();
+      var box = $("reserveMsg");
+      if (box) {
+        box.hidden = false;
+        box.textContent = "Table held — " + id + ". " + data.get("guests") +
+          " guests on " + data.get("date") + " at " + data.get("time") +
+          ". Quote this ID at the door. A note is going to " + data.get("email") + ".";
+      }
+      showToast("Reservation " + id);
+      reserveForm.reset();
+      reserveForm.elements.date.min = new Date().toISOString().split("T")[0];
+    });
+  }
+
+  var contactForm = $("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var data = new FormData(contactForm);
+      var box = $("contactMsg");
+      if (box) {
+        box.hidden = false;
+        box.textContent = "Host desk: Hello " + data.get("name") +
+          ", we have your note and will write to " + data.get("email") +
+          " within two hours. For tonight, reserve above.";
+      }
+      showToast("The host replied");
+      contactForm.reset();
+    });
+  }
+
+  function reply(text) {
+    var q = String(text).toLowerCase();
+    if (/(hi|hello|hey|namaste)/.test(q)) return "Namaste. SavorySpot is 100% pure veg. Hours, menu, or a table?";
+    if (/(hour|open|close)/.test(q)) return "Daily 8:00 AM to 11:00 PM. Last seating 10:30 PM.";
+    if (/(where|address|bandra)/.test(q)) return "14 Government Colony Road, Bandra East, Mumbai 400051.";
+    if (/(meat|chicken|fish|egg|non.?veg|mutton)/.test(q)) return "We are 100% pure vegetarian. No meat, fish or egg. Jain thali without onion and garlic on request.";
+    if (/(jain|onion|garlic)/.test(q)) return "Yes — Jain cooking with no onion or garlic. Tell us when you reserve or order.";
+    if (/(menu|thali|biryani|food|veg|paneer|poha|idli)/.test(q)) return "Pure veg menu: kanda poha, ragi idli, paneer tikka masala, Punjabi thali, special brass thali, veg dum biryani.";
+    if (/(book|reserv|table)/.test(q)) return "Use Reserve a table. You’ll get a booking ID on this page.";
+    if (/(order|pickup)/.test(q)) return "Add dishes from the menu, then open Order.";
+    return "Noted. Reserve on this page, or call +91 22 3561 4400.";
+  }
+
+  var hostBtn = $("hostBtn");
+  var hostPanel = $("hostPanel");
+  var hostLog = $("hostLog");
+  var hostForm = $("hostForm");
+  function bubble(role, text) {
+    if (!hostLog) return;
+    var el = document.createElement("div");
+    el.className = "bubble " + role;
+    el.textContent = text;
+    hostLog.appendChild(el);
+    hostLog.scrollTop = hostLog.scrollHeight;
+  }
+  if (hostBtn && hostPanel) {
+    hostBtn.addEventListener("click", function () {
+      hostPanel.hidden = false;
+      if (hostLog && !hostLog.childElementCount) bubble("host", "Namaste. Pure veg kitchen — ask about the thali, biryani, or a table.");
+    });
+  }
+  var closeHost = $("closeHost");
+  if (closeHost && hostPanel) {
+    closeHost.addEventListener("click", function () { hostPanel.hidden = true; });
+  }
+  if (hostForm) {
+    hostForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var input = $("hostInput");
+      if (!input) return;
+      var text = input.value.trim();
+      if (!text) return;
+      bubble("user", text);
+      input.value = "";
+      setTimeout(function () { bubble("host", reply(text)); }, 350);
+    });
+  }
+
+  var menuBtn = $("menuBtn");
+  var nav = $("nav");
+  if (menuBtn && nav) {
+    menuBtn.addEventListener("click", function () {
+      var open = nav.classList.toggle("is-open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+    });
+    nav.addEventListener("click", function (event) {
+      if (event.target.tagName === "A") nav.classList.remove("is-open");
+    });
+  }
+
+  var topbar = $("topbar");
+  if (topbar) {
+    var onScroll = function () {
+      topbar.classList.toggle("is-on", window.scrollY > 40);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
   renderCart();
-  toast(`${dish.name} added to your order`);
-}
-
-function changeQty(id, delta) {
-  const item = cart.get(id);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty <= 0) cart.delete(id);
-  renderCart();
-}
-
-function bookingId() {
-  return `SS-${Math.floor(1000 + Math.random() * 9000)}`;
-}
-
-function replyToChat(text) {
-  const lower = text.toLowerCase();
-  if (/(hi|hello|hey)\b/.test(lower)) {
-    return "Hello from SavorySpot. I can help with hours, the menu, reservations, or orders.";
-  }
-  if (/(hour|open|close|time)/.test(lower)) {
-    return "We are open daily from 8:00 AM to 11:00 PM. Last seating is 10:30 PM.";
-  }
-  if (/(where|location|address|bandra|mumbai)/.test(lower)) {
-    return "You’ll find us in Bandra East, Mumbai. Parking is available beside the entrance.";
-  }
-  if (/(menu|food|veg|dish|biryani|breakfast)/.test(lower)) {
-    return "Breakfast, lunch, and dinner are on the menu. Most plates are vegetarian. Tap Add to order, or tell me a dish you like.";
-  }
-  if (/(book|reserv|table|seat)/.test(lower)) {
-    return "I can take a table request. Scroll to Reserve, or share a date, time, and guest count here.";
-  }
-  if (/(order|deliver|pickup|cart)/.test(lower)) {
-    return "Add dishes to your order, then checkout for dine-in or 25-minute pickup. We confirm on this page instantly.";
-  }
-  if (/(price|cost|how much)/.test(lower)) {
-    return "Plates start at ₹99. The special thali is ₹599. GST is 5% at checkout.";
-  }
-  return "Thanks for writing in. A host has this note. For a guaranteed table, use Reserve — you’ll get a booking ID immediately.";
-}
-
-function addBubble(role, text) {
-  const bubble = document.createElement("div");
-  bubble.className = `bubble ${role}`;
-  bubble.textContent = text;
-  chatLog.appendChild(bubble);
-  chatLog.scrollTop = chatLog.scrollHeight;
-}
-
-function openChat() {
-  chatPanel.hidden = false;
-  if (!chatLog.childElementCount) {
-    addBubble("host", "Welcome to SavorySpot. Ask about hours, the menu, or a table — I’ll reply here.");
-  }
-}
-
-document.getElementById("filters").addEventListener("click", (event) => {
-  const button = event.target.closest("[data-filter]");
-  if (!button) return;
-  activeFilter = button.dataset.filter;
-  document.querySelectorAll(".filter-btn").forEach((el) => el.classList.toggle("is-active", el === button));
-  renderMenu();
-});
-
-menuGrid.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-add]");
-  if (!button) return;
-  addToCart(button.dataset.add);
-});
-
-document.getElementById("cartBtn").addEventListener("click", () => {
-  cartDrawer.classList.add("is-open");
-  cartDrawer.setAttribute("aria-hidden", "false");
-});
-
-document.getElementById("closeCart").addEventListener("click", () => {
-  cartDrawer.classList.remove("is-open");
-  cartDrawer.setAttribute("aria-hidden", "true");
-});
-
-cartDrawer.addEventListener("click", (event) => {
-  if (event.target === cartDrawer) {
-    cartDrawer.classList.remove("is-open");
-  }
-  const button = event.target.closest("[data-change]");
-  if (!button) return;
-  changeQty(button.dataset.change, Number(button.dataset.delta));
-});
-
-document.getElementById("checkoutForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const data = new FormData(event.target);
-  const id = bookingId();
-  const totals = cartTotals();
-  const lines = [...cart.values()].map((item) => `${item.qty} × ${item.name}`).join(", ");
-  const fulfillment = data.get("fulfillment") === "pickup" ? "Pickup in about 25 minutes" : "We’ll send it to your table";
-  showModal(
-    "Order confirmed",
-    `Hi ${data.get("name")}, your order ${id} is in.\n\n${lines}\nTotal: ${rupees(totals.total)}\n${fulfillment}.\n\nWe’ll text ${data.get("phone")} if the kitchen needs anything.`
-  );
-  cart.clear();
-  renderCart();
-  event.target.reset();
-  cartDrawer.classList.remove("is-open");
-  toast(`Kitchen replied: order ${id} confirmed`);
-});
-
-const reserveForm = document.getElementById("reserveForm");
-const dateInput = reserveForm.elements.date;
-dateInput.min = new Date().toISOString().split("T")[0];
-
-reserveForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const data = new FormData(reserveForm);
-  const chosen = new Date(`${data.get("date")}T00:00:00`);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  if (chosen < today) {
-    toast("Please pick today or a future date");
-    return;
-  }
-  const id = bookingId();
-  const occasion = data.get("occasion") ? ` Occasion: ${data.get("occasion")}.` : "";
-  const message = `You're booked, ${data.get("name")}.\n\nBooking ${id}\n${data.get("guests")} guests · ${data.get("date")} · ${data.get("time")}${occasion}\n\nA confirmation is also headed to ${data.get("email")}. Arrive 10 minutes early and quote this ID at the door.`;
-  localStorage.setItem("savoryspot-booking", JSON.stringify({ id, message }));
-  showModal("Table reserved", message);
-  toast(`Host replied: table ${id} is held`);
-  reserveForm.reset();
-  dateInput.min = new Date().toISOString().split("T")[0];
-});
-
-document.getElementById("contactForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const data = new FormData(event.target);
-  const reply = document.getElementById("latestReply");
-  reply.hidden = false;
-  reply.innerHTML = `<strong>Reply from SavorySpot</strong><p>Hi ${escapeHtml(data.get("name"))}, we received your note and will follow up at ${escapeHtml(data.get("email"))} within 2 hours. If you need a table tonight, reserve above and you’ll get an ID instantly.</p>`;
-  showModal(
-    "Message received",
-    `Thanks, ${data.get("name")}. Our host team just replied on this page and will also write to ${data.get("email")}.`
-  );
-  toast("SavorySpot replied to your message");
-  event.target.reset();
-});
-
-document.getElementById("chatToggle").addEventListener("click", openChat);
-document.getElementById("closeChat").addEventListener("click", () => {
-  chatPanel.hidden = true;
-});
-
-document.getElementById("chatForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const input = document.getElementById("chatInput");
-  const text = input.value.trim();
-  if (!text) return;
-  addBubble("user", text);
-  input.value = "";
-  setTimeout(() => addBubble("host", replyToChat(text)), 450);
-});
-
-document.getElementById("navToggle").addEventListener("click", () => {
-  const nav = document.getElementById("siteNav");
-  const open = nav.classList.toggle("is-open");
-  document.getElementById("navToggle").setAttribute("aria-expanded", String(open));
-});
-
-document.getElementById("siteNav").addEventListener("click", (event) => {
-  if (event.target.tagName === "A") {
-    document.getElementById("siteNav").classList.remove("is-open");
-  }
-});
-
-document.getElementById("closeModal").addEventListener("click", hideModal);
-modal.addEventListener("click", (event) => {
-  if (event.target === modal) hideModal();
-});
-
-renderMenu();
-renderCart();
+})();

@@ -3,267 +3,266 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SavorySpot — Fine Dining, Bandra East</title>
-  <meta name="description" content="SavorySpot is an upscale Indian restaurant in Bandra East, Mumbai. Browse the menu, order, book a table, and chat with us.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect fill='%23120e0c' width='64' height='64' rx='12'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='36'%3E🍽️%3C/text%3E%3C/svg%3E">
+  <title>SavorySpot — 100% Pure Veg, Bandra East</title>
+  <meta name="description" content="Pure vegetarian restaurant in Bandra East, Mumbai. Poha, idli, paneer, thalis and veg biryani. No meat, fish or egg.">
+  <meta name="theme-color" content="#0b0a09">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%230b0a09' width='32' height='32'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='14' fill='%23c4a46a' font-family='Georgia'%3ES%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#menu">Skip to menu</a>
+  <a class="skip" href="#menu">Skip to menu</a>
 
-  <header class="navbar" id="top">
-    <a class="logo" href="#top">SavorySpot</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav id="siteNav">
-      <ul>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#chef">Chefs</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#reserve">Reserve</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+  <header class="top" id="topbar">
+    <a class="brand" href="#top">SavorySpot <span class="veg-mark" title="100% vegetarian">Veg</span></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav">
+      <a href="#menu">Menu</a>
+      <a href="#story">Story</a>
+      <a href="#plates">Plates</a>
+      <a href="#reserve">Reserve</a>
     </nav>
-    <button class="cart-btn" id="cartBtn" aria-label="Open order">
-      Order <span class="cart-count" id="cartCount">0</span>
-    </button>
+    <div class="top-actions">
+      <button class="ghost" id="cartBtn" type="button">Order <em id="cartCount">0</em></button>
+      <a class="pill" href="#reserve">Book a table</a>
+    </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="eyebrow">Bandra East · Mumbai</p>
-      <h1>Where every flavor tells a story</h1>
-      <p class="hero-sub">Seasonal Indian plates, warm lighting, and a table waiting for you.</p>
-      <div class="hero-actions">
-        <a class="btn btn-gold" href="#menu">View menu</a>
-        <a class="btn btn-ghost" href="#reserve">Book a table</a>
+  <main id="top">
+    <section class="hero">
+      <p class="tag">100% Pure Veg · Bandra East · Since 2019</p>
+      <h1><em>Where every flavor</em><br>tells a story.</h1>
+      <p class="lede">A neighbourhood Indian kitchen. Only vegetarian food — no meat, no fish, no egg. Thalis, tandoor paneer, poha at breakfast, veg biryani after dark.</p>
+      <p class="hero-cta">
+        <a class="pill" href="#reserve">Reserve this evening</a>
+        <a class="textlink" href="#menu">See the menu</a>
+      </p>
+      <span class="scroll-cue">Scroll</span>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>100% Pure Veg</span><span>No egg</span><span>Bandra East</span><span>Punjabi thali</span><span>Veg biryani</span>
+        <span>100% Pure Veg</span><span>No egg</span><span>Bandra East</span><span>Punjabi thali</span><span>Veg biryani</span>
       </div>
     </div>
-  </section>
 
-  <div class="info-bar">
-    <div><strong>Open daily</strong><span>8:00 AM – 11:00 PM</span></div>
-    <div><strong>Location</strong><span>Bandra East, Mumbai</span></div>
-    <div><strong>Guest rating</strong><span>4.8 · 1,200+ reviews</span></div>
-  </div>
-
-  <section id="menu">
-    <p class="eyebrow">From the kitchen</p>
-    <h2>Menu</h2>
-    <p class="section-lead">Tap a dish to add it to your order. We’ll confirm instantly.</p>
-    <div class="filters" id="filters" role="tablist" aria-label="Menu categories">
-      <button class="filter-btn is-active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="breakfast">Breakfast</button>
-      <button class="filter-btn" data-filter="lunch">Lunch</button>
-      <button class="filter-btn" data-filter="dinner">Dinner</button>
-    </div>
-    <div class="menu-grid" id="menuGrid"></div>
-  </section>
-
-  <section id="chef">
-    <p class="eyebrow">The team</p>
-    <h2>Our chefs</h2>
-    <div class="chef-grid">
-      <figure>
-        <img src="images/1.jpg" alt="Executive Chef Ananya Rao">
-        <figcaption>
-          <strong>Ananya Rao</strong>
-          <span>Executive Chef</span>
-        </figcaption>
-      </figure>
-      <figure>
-        <img src="images/2.jpeg" alt="Chef Rohan Mehta">
-        <figcaption>
-          <strong>Rohan Mehta</strong>
-          <span>Grill &amp; Tandoor</span>
-        </figcaption>
-      </figure>
-      <figure>
-        <img src="images/3.jpeg" alt="Chef Priya Nair">
-        <figcaption>
-          <strong>Priya Nair</strong>
-          <span>Pastry</span>
-        </figcaption>
-      </figure>
-      <figure>
-        <img src="images/4.jpg" alt="Chef Vikram Singh">
-        <figcaption>
-          <strong>Vikram Singh</strong>
-          <span>Regional Indian</span>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section id="about" class="about">
-    <div class="about-copy">
-      <p class="eyebrow">Our story</p>
-      <h2>About SavorySpot</h2>
-      <p>SavorySpot is a modern restaurant in Bandra East built around slow cooking, generous spices, and a room that feels like evening even at noon.</p>
-      <p>We source daily from local markets, keep a mostly vegetarian kitchen with coastal and Punjabi plates, and treat every booking as a personal welcome.</p>
-      <ul class="about-points">
-        <li>Farm-fresh produce, milled spices</li>
-        <li>Private tables for 2–12 guests</li>
-        <li>Walk-ins welcome until 10:30 PM</li>
-      </ul>
-    </div>
-    <img class="about-photo" src="images/about.png" alt="SavorySpot dining room with warm pendant lighting">
-  </section>
-
-  <section id="reserve">
-    <p class="eyebrow">Join us</p>
-    <h2>Reserve a table</h2>
-    <p class="section-lead">Request a seating and we’ll send a booking confirmation right away.</p>
-    <form id="reserveForm" class="panel-form">
-      <div class="form-row">
-        <label>Name
-          <input type="text" name="name" autocomplete="name" required>
-        </label>
-        <label>Phone
-          <input type="tel" name="phone" autocomplete="tel" placeholder="+91" required>
-        </label>
+    <section class="story" id="story">
+      <p class="num">01</p>
+      <div class="story-copy">
+        <p class="tag">The room</p>
+        <h2>A Bandra veg kitchen<br>with a proper dining room.</h2>
+        <p>We cook the food people actually order in Mumbai — poha and idli in the morning, paneer and thalis at lunch, a brass thali and veg dum biryani at night. Vegetables from the local market. Jain plates without onion and garlic if you ask. Tables held fifteen minutes past the booking.</p>
       </div>
-      <label>Email
-        <input type="email" name="email" autocomplete="email" required>
-      </label>
-      <div class="form-row">
-        <label>Date
-          <input type="date" name="date" required>
-        </label>
+      <figure class="story-shot">
+        <img src="images/hero.jpg" alt="A long table set for dinner" width="626" height="417">
+        <figcaption>Dinner service, the long table</figcaption>
+      </figure>
+    </section>
+
+    <section class="plates" id="plates">
+      <header class="section-title">
+        <p class="tag">02 — From the pass</p>
+        <h2>Signatures</h2>
+      </header>
+      <div class="plate-grid">
+        <article class="plate plate-lg" data-id="biryani" data-name="Veg dum biryani" data-price="350">
+          <img src="images/dinner2.jpeg" alt="Veg dum biryani in a clay handi" width="454" height="357">
+          <div>
+            <span>01 · Pure veg</span>
+            <h3>Veg dum biryani</h3>
+            <p>Basmati, mixed vegetables, fried onion, mint, raita. Dum-cooked in a handi.</p>
+            <p class="meta"><b>₹350</b> <button type="button">Add</button></p>
+          </div>
+        </article>
+        <article class="plate" data-id="special" data-name="Special brass thali" data-price="599">
+          <img src="images/dinner1.jpeg" alt="Special vegetarian brass thali" width="466" height="340">
+          <div>
+            <span>02 · Pure veg</span>
+            <h3>Special brass thali</h3>
+            <p>Dal, paneer, sabzi, rice, roti, salad, two sweets.</p>
+            <p class="meta"><b>₹599</b> <button type="button">Add</button></p>
+          </div>
+        </article>
+        <article class="plate" data-id="paneer" data-name="Paneer tikka masala" data-price="360">
+          <img src="images/lunch1.jpeg" alt="Paneer tikka masala with butter naan" width="433" height="322">
+          <div>
+            <span>03 · Pure veg</span>
+            <h3>Paneer tikka masala</h3>
+            <p>Tandoor paneer, tomato gravy, butter naan.</p>
+            <p class="meta"><b>₹360</b> <button type="button">Add</button></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="menu" id="menu">
+      <header class="section-title">
+        <p class="tag">03 — Menu</p>
+        <h2>Pure veg menu</h2>
+        <p class="menu-note">Every plate carries the green mark. No meat, fish or egg. Jain (no onion, garlic) on request.</p>
+      </header>
+      <div class="menu-wrap">
+        <figure>
+          <img src="images/lunch2.jpeg" alt="Punjabi vegetarian thali on a banana leaf" width="375" height="371">
+        </figure>
+        <div class="menu-cols">
+          <div>
+            <h3>Breakfast</h3>
+            <article data-id="poha" data-name="Kanda poha" data-price="99"><h4>Kanda poha</h4><i></i><b>₹99</b><button type="button">Add</button></article>
+            <article data-id="idli" data-name="Ragi idli" data-price="150"><h4>Ragi idli</h4><i></i><b>₹150</b><button type="button">Add</button></article>
+            <article data-id="paratha" data-name="Aloo paratha" data-price="189"><h4>Aloo paratha</h4><i></i><b>₹189</b><button type="button">Add</button></article>
+            <h3>Lunch</h3>
+            <article data-id="paneer" data-name="Paneer tikka masala" data-price="360"><h4>Paneer tikka masala</h4><i></i><b>₹360</b><button type="button">Add</button></article>
+            <article data-id="thali" data-name="Punjabi thali" data-price="445"><h4>Punjabi thali</h4><i></i><b>₹445</b><button type="button">Add</button></article>
+            <article data-id="market" data-name="Veg thali" data-price="395"><h4>Veg thali</h4><i></i><b>₹395</b><button type="button">Add</button></article>
+          </div>
+          <div>
+            <h3>Dinner</h3>
+            <article data-id="special" data-name="Special brass thali" data-price="599"><h4>Special brass thali</h4><i></i><b>₹599</b><button type="button">Add</button></article>
+            <article data-id="biryani" data-name="Veg dum biryani" data-price="350"><h4>Veg dum biryani</h4><i></i><b>₹350</b><button type="button">Add</button></article>
+            <article data-id="feast" data-name="Family veg thali" data-price="520"><h4>Family veg thali</h4><i></i><b>₹520</b><button type="button">Add</button></article>
+            <h3>Drinks &amp; sweets</h3>
+            <article data-id="chai" data-name="Masala chai" data-price="70"><h4>Masala chai</h4><i></i><b>₹70</b><button type="button">Add</button></article>
+            <article data-id="nimbu" data-name="Fresh lime soda" data-price="90"><h4>Fresh lime soda</h4><i></i><b>₹90</b><button type="button">Add</button></article>
+            <article data-id="lassi" data-name="Mango lassi" data-price="120"><h4>Mango lassi</h4><i></i><b>₹120</b><button type="button">Add</button></article>
+            <article data-id="jamun" data-name="Gulab jamun" data-price="140"><h4>Gulab jamun</h4><i></i><b>₹140</b><button type="button">Add</button></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="film-wrap">
+      <p class="tag">04 — The look of the place</p>
+      <div class="film">
+        <img src="images/interior1.png" alt="Dining room" width="1200" height="800" loading="lazy">
+        <img src="images/breakfast1.jpeg" alt="Poha" width="461" height="353" loading="lazy">
+        <img src="images/dinner3.jpeg" alt="Family vegetarian thali" width="454" height="369" loading="lazy">
+        <img src="images/breakfast2.jpeg" alt="Idli" width="368" height="364" loading="lazy">
+        <img src="images/lunch3.jpeg" alt="Market thali" width="357" height="326" loading="lazy">
+        <img src="images/hero.jpg" alt="Set table" width="626" height="417" loading="lazy">
+      </div>
+    </section>
+
+    <section class="chef">
+      <img src="images/1.jpg" alt="Chef Ananya Rao" width="342" height="615">
+      <div>
+        <p class="tag">05 — Kitchen</p>
+        <h2>Ananya Rao</h2>
+        <p>Executive chef. A pure-veg kitchen — tandoor paneer, dals, thalis, and a veg dum biryani. Jain cooking on request.</p>
+        <blockquote>“Come hungry. Everything on the table is vegetarian.”</blockquote>
+      </div>
+    </section>
+
+    <section class="reserve" id="reserve">
+      <div>
+        <p class="tag">06 — Reservations</p>
+        <h2>Hold a table.</h2>
+        <ul>
+          <li><span>Breakfast</span> 8:00 – 11:30</li>
+          <li><span>Lunch</span> 12:00 – 3:30</li>
+          <li><span>Dinner</span> 7:00 – 11:00</li>
+          <li><span>Last seating</span> 10:30 PM</li>
+        </ul>
+        <p class="fine">14 Government Colony Road, Bandra East · +91 22 3561 4400</p>
+      </div>
+      <form id="reserveForm">
+        <label>Date <input type="date" name="date" required></label>
         <label>Time
           <select name="time" required>
-            <option value="">Choose a slot</option>
+            <option value="">Select</option>
             <option>8:00 AM</option>
-            <option>9:30 AM</option>
             <option>12:30 PM</option>
             <option>1:30 PM</option>
             <option>7:00 PM</option>
             <option>8:00 PM</option>
-            <option>9:00 PM</option>
-            <option>10:00 PM</option>
+            <option>9:30 PM</option>
           </select>
         </label>
         <label>Guests
-          <input type="number" name="guests" min="1" max="12" value="2" required>
+          <select name="guests" required>
+            <option>1</option>
+            <option selected>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>6</option>
+            <option>8</option>
+          </select>
         </label>
-      </div>
-      <label>Occasion <span class="optional">(optional)</span>
-        <select name="occasion">
-          <option value="">Just dining</option>
-          <option>Birthday</option>
-          <option>Anniversary</option>
-          <option>Business</option>
-          <option>Family gathering</option>
-        </select>
-      </label>
-      <label>Notes <span class="optional">(optional)</span>
-        <textarea name="notes" rows="3" placeholder="Allergies, window seat, high chair…"></textarea>
-      </label>
-      <button class="btn btn-gold" type="submit">Confirm reservation</button>
-      <p class="form-hint">You’ll get a booking ID on this page immediately.</p>
-    </form>
-  </section>
-
-  <section id="contact">
-    <p class="eyebrow">Talk to us</p>
-    <h2>Contact</h2>
-    <p class="section-lead">Ask a question — we reply on this page, then follow up by email.</p>
-    <div class="contact-grid">
-      <form id="contactForm" class="panel-form">
-        <label>Name
-          <input type="text" name="name" autocomplete="name" required>
-        </label>
-        <label>Email
-          <input type="email" name="email" autocomplete="email" required>
-        </label>
-        <label>Message
-          <textarea name="message" rows="5" required placeholder="Ask about the menu, events, or a large booking…"></textarea>
-        </label>
-        <button class="btn btn-gold" type="submit">Send message</button>
+        <label>Name <input type="text" name="name" required></label>
+        <label>Phone <input type="tel" name="phone" required></label>
+        <label>Email <input type="email" name="email" required></label>
+        <button class="pill wide" type="submit">Confirm reservation</button>
+        <p class="note" id="reserveMsg" hidden></p>
       </form>
-      <aside class="contact-card">
-        <h3>Visit</h3>
-        <p>Bandra East, Mumbai</p>
-        <p>savoryspot@gmail.com</p>
-        <p>+91 22 3561 4400</p>
-        <p>Daily 8:00 AM – 11:00 PM</p>
-        <div id="latestReply" class="latest-reply" hidden></div>
-      </aside>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div>
-      <strong class="logo">SavorySpot</strong>
-      <p>Fine Indian dining in Bandra East.</p>
-    </div>
-    <p>© 2026 SavorySpot. All rights reserved.</p>
+    <section class="visit" id="visit">
+      <div>
+        <p class="tag">Visit</p>
+        <h2>Bandra East,<br>Mumbai.</h2>
+        <p>14 Government Colony Road, 400051</p>
+        <p><a href="mailto:savoryspot@gmail.com">savoryspot@gmail.com</a></p>
+        <a class="textlink" href="https://www.google.com/maps/search/?api=1&query=Bandra+East+Mumbai" target="_blank" rel="noopener noreferrer">Get directions</a>
+        <form id="contactForm">
+          <h3>Host desk</h3>
+          <label>Name <input type="text" name="name" required></label>
+          <label>Email <input type="email" name="email" required></label>
+          <label>Message <textarea name="message" rows="4" required></textarea></label>
+          <button class="pill" type="submit">Send</button>
+          <p class="note" id="contactMsg" hidden></p>
+        </form>
+      </div>
+      <img src="images/interior1.png" alt="SavorySpot dining room" width="1200" height="800" loading="lazy">
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p class="wordmark">SavorySpot</p>
+    <p>100% Pure Veg · No egg · Bandra East, Mumbai</p>
+    <p>© 2026</p>
   </footer>
 
-  <aside class="drawer" id="cartDrawer" aria-hidden="true">
+  <aside class="drawer" id="drawer" hidden>
     <div class="drawer-panel">
       <header>
         <h2>Your order</h2>
-        <button class="icon-btn" id="closeCart" aria-label="Close order">×</button>
+        <button type="button" id="closeDrawer">Close</button>
       </header>
-      <div id="cartItems" class="cart-items"></div>
-      <div class="cart-summary" id="cartSummary" hidden>
-        <p><span>Subtotal</span><span id="subtotal">₹0</span></p>
-        <p><span>GST (5%)</span><span id="gst">₹0</span></p>
-        <p class="total"><span>Total</span><span id="total">₹0</span></p>
-        <form id="checkoutForm">
-          <label>Name
-            <input type="text" name="name" required>
-          </label>
-          <label>Phone
-            <input type="tel" name="phone" required>
-          </label>
-          <label>How should we serve this?
-            <select name="fulfillment" required>
-              <option value="dine-in">Dine in</option>
-              <option value="pickup">Pickup in 25 min</option>
-            </select>
-          </label>
-          <button class="btn btn-gold" type="submit">Place order</button>
-        </form>
-      </div>
+      <div id="cartList"></div>
+      <form id="checkoutForm" hidden>
+        <p class="totals"><span>Total incl. GST</span> <strong id="cartTotal">₹0</strong></p>
+        <label>Name <input type="text" name="name" required></label>
+        <label>Phone <input type="tel" name="phone" required></label>
+        <label>Service
+          <select name="fulfillment">
+            <option value="dine-in">Send to my table</option>
+            <option value="pickup">Pickup in 25 min</option>
+          </select>
+        </label>
+        <button class="pill wide" type="submit">Place order</button>
+      </form>
     </div>
   </aside>
 
-  <div class="chat" id="chat">
-    <button class="chat-toggle" id="chatToggle" aria-label="Open chat">
-      Chat with us
-    </button>
-    <div class="chat-panel" id="chatPanel" hidden>
+  <div class="host">
+    <div class="host-panel" id="hostPanel" hidden>
       <header>
-        <div>
-          <strong>SavorySpot host</strong>
-          <span>Usually replies instantly</span>
-        </div>
-        <button class="icon-btn" id="closeChat" aria-label="Close chat">×</button>
+        <strong>Host desk</strong>
+        <button type="button" id="closeHost">Close</button>
       </header>
-      <div class="chat-log" id="chatLog" role="log" aria-live="polite"></div>
-      <form id="chatForm">
-        <input type="text" id="chatInput" placeholder="Ask about hours, menu, booking…" required autocomplete="off">
-        <button class="btn btn-gold" type="submit">Send</button>
+      <div class="host-log" id="hostLog"></div>
+      <form id="hostForm">
+        <input id="hostInput" type="text" placeholder="Hours, menu, a table…" required autocomplete="off">
+        <button class="pill" type="submit">Send</button>
       </form>
     </div>
+    <button type="button" id="hostBtn">Ask the host</button>
   </div>
 
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
-      <h3 id="modalTitle"></h3>
-      <p id="modalBody"></p>
-      <button class="btn btn-gold" id="closeModal" type="button">Done</button>
-    </div>
-  </div>
-
-  <div class="toasts" id="toasts" aria-live="polite"></div>
-  <script src="script.js"></script>
+  <p class="toast" id="toast" hidden></p>
+  <script src="script.js" defer></script>
 </body>
 </html>
